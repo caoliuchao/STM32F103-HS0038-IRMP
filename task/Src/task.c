@@ -21,9 +21,6 @@ __align(8) OS_STK USART1_TASK_STK[USART1_STK_SIZE]; //创建任务堆栈空间
 /*-----------------IRMP任务堆栈-------------------------------------*/
 __align(8) OS_STK IRMP_TASK_STK[IRMP_STK_SIZE];     //创建任务堆栈空间
 
-/*-----------------IRSND任务堆栈------------------------------------*/
-__align(8) OS_STK IRSND_TASK_STK[IRSND_STK_SIZE];     //创建任务堆栈空间
-
 /*******************************************************************
 *   函数名：start_task(void *pdata)
 *   功  能：开始任务，建立其他任务
@@ -46,8 +43,7 @@ void start_task(void *pdata)
 	
     OSTaskCreate(usart1_task,(void *)0,(OS_STK*)&USART1_TASK_STK[USART1_STK_SIZE-1],USART1_TASK_PRIO);  
     OSTaskCreate(irmp_task,(void *)0,(OS_STK*)&IRMP_TASK_STK[IRMP_STK_SIZE-1],IRMP_TASK_PRIO);
-    //OSTaskCreate(irsnd_task,(void *)0,(OS_STK*)&IRSND_TASK_STK[IRSND_STK_SIZE-1],IRSND_TASK_PRIO);
-    
+
     status = OSTaskDelReq(OS_PRIO_SELF);	//请求删除起始任务.
     if (status == OS_ERR_NONE)
     {
@@ -105,39 +101,6 @@ void irmp_task(void *pdata)
         }
         
         Delay1ms(110);
-    }
-}
-
-/************************************************************************
- *   函数名：irsnd_task(void *pdata)
- *   功  能：IRSND的任务
- *   输  入：
- *          pdata 指针
- *   输  出：
- *          无
- **********************************************************************/
-void irsnd_task(void *pdata)   //任务函数接口
-{
-    IRMP_DATA irmp_data;
-
-    irsnd_init();    // initialize irmp
-    irsnd_timer_init(); // initialize timer
-    
-    irmp_data.protocol = IRMP_NEC_PROTOCOL;       // sende im NEC-Protokoll
-    irmp_data.address  = 0x00FF;                  // verwende Adresse 0x00FF
-    irmp_data.command  = 0x0001;                  // sende Kommando 0001
-    irmp_data.flags    = 0;                       // keine Wiederholung!
-
-    while (1)
-    {
-        while (irsnd_is_busy())
-        { 
-            ;                                           //等你自己或做别的事...... 
-        } 
-        
-        irsnd_send_data (&irmp_data, true);   // versende ohne Prüfung und ohne Warten
-        
-        Delay1ms(1000);
     }
 }
 

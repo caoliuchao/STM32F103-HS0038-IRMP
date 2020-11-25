@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CMSIS\Inc;..\Drives\Inc;..\FWLIB\Inc;..\FWLIB\SystemInc;..\Interrupt\Inc;..\task\Inc;..\UCOSII\Inc;..\UCOSII\user;..\IRMP\inc;..\IRSND\inc;..\IRCTRL\Inc</IncludePath>
+              <IncludePath>..\CMSIS\Inc;..\Drives\Inc;..\FWLIB\Inc;..\FWLIB\SystemInc;..\Interrupt\Inc;..\task\Inc;..\UCOSII\Inc;..\UCOSII\user;..\IRMP\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -411,21 +411,6 @@
               <FileName>irmptime.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\IRMP\src\irmptime.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>IRSND</GroupName>
-          <Files>
-            <File>
-              <FileName>irsnd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\IRSND\src\irsnd.c</FilePath>
-            </File>
-            <File>
-              <FileName>irsndtime.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\IRSND\src\irsndtime.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -30,9 +30,6 @@
 #include "irmp.h"
 #include "irmptime.h"
 
-#include "irsnd.h"
-#include "irsndtime.h"
-
 #endif
 /*****************************ÎÄ¼ş½áÊø*******************************/
 

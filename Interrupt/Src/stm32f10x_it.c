@@ -237,7 +237,6 @@ void TIM4_IRQHandler(void)   // Timer4 Interrupt Handler
 #endif
    if (TIM_GetITStatus(TIM4,TIM_IT_Update) == SET)   
    {  
-       (void) irsnd_ISR(); // call irmp ISR
        TIM_ClearITPendingBit(TIM4, TIM_IT_Update); 
    }
     
